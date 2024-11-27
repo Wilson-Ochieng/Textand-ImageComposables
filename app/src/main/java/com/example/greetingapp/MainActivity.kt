@@ -20,6 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,11 +35,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GreetingAppTheme {
-                GreetingText(
-                    message = "Happy Birthday Sam!",
-                    from = "From Emma",
-                    modifier = Modifier.padding(8.dp)
-                )
+//                GreetingText(
+//                    message = "Happy Birthday Sam!",
+//                    from = "From Emma",
+//                    modifier = Modifier.padding(8.dp)
+//                )
+
 
             }
         }
@@ -53,6 +57,9 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
         Text(
             text = message,
             fontSize = 50.sp,
+            color = Color.Red,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.SansSerif,
             lineHeight = 116.sp,
             modifier = Modifier.padding(8.dp),
             textAlign = TextAlign.Center
@@ -61,7 +68,12 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
         Text(
             text = from,
             fontSize = 16.sp,
-            modifier = Modifier.padding(8.dp).align(alignment = Alignment.End)
+            fontWeight = FontWeight.Bold,
+            color = Color.Blue,
+            fontFamily = FontFamily.Monospace,
+            modifier = Modifier
+                .padding(8.dp)
+                .align(alignment = Alignment.End)
 
 
         )
@@ -70,15 +82,43 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
 
 }
 
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+
+    val image = painterResource(
+        R.drawable.mybirthday
+    )
+
+    Box {
+        Image(
+            painter = image,
+            contentDescription = null
+        )
+
+        GreetingText(
+            message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+
+        )
+    }
+
+}
+
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     GreetingAppTheme {
-//GreetingText(message = "Happy Birthday Sam", from = " From Ruhi")
-        GreetingText(
+
+
+        GreetingImage(
             message = "Happy Birthday",
-            from = "Mbappe"
+            from = "Juliet"
+
         )
+
     }
 }
